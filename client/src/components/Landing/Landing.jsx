@@ -23,7 +23,12 @@ const Landing = () => {
         </Link>
       </div>
       <div className="">
-        <img src={"/landing.jpg"} alt="landing" width={"100%"} height={515} />
+        <img
+          src={`${process.env.PUBLIC_URL}/landing.jpg`}
+          alt="landing"
+          width={"100%"}
+          height={515}
+        />
       </div>
     </div>
   );

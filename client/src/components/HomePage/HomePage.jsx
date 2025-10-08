@@ -79,7 +79,11 @@ const HomePage = () => {
             </div>
           ) : (
             <div className="no-data-container">
-              <img alt="no task" src="/nodata.jpg" className="no-data-img" />
+              <img
+                alt="no task"
+                src={`${process.env.PUBLIC_URL}/nodata.jpg`}
+                className="no-data-img"
+              />
               <p className="no-task">No Tasks Found</p>
             </div>
           )}
