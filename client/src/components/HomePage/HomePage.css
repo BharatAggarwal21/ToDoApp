@@ -1,0 +1,81 @@
+.container {
+  background: linear-gradient(135deg, #0d1b2a, #4b0082);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 94vh;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.tasks-container {
+  margin-top: 20px;
+  background-color: white;
+  width: 50%;
+  border-radius: 1%;
+  margin-top: 3rem;
+  height: 80vh;
+}
+
+.todo-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.add-task {
+  display: flex;
+  margin: 20px auto;
+  background: white;
+  width: 90%;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.add-task input[type="search"] {
+  flex: 1;
+  border: none;
+  padding: 12px 16px;
+  font-size: 16px;
+  outline: none;
+  border-radius: 0;
+}
+
+.add-task button {
+  background-color: #ff775f;
+  border-radius: 20px;
+  margin: 0;
+}
+
+.add-task button i {
+  margin-left: 8px;
+}
+
+.add-task button:hover {
+  background-color: #6a00bf;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 88%;
+  margin: 20px auto;
+  max-height: 80%;
+  overflow: scroll;
+  padding: 0 15px;
+}
+
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-data-img {
+  height: 8rem;
+  margin-top: 30px;
+}

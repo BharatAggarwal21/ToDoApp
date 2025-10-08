@@ -1,0 +1,118 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 16px 20px;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+}
+
+/* On hover */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Left section (title + description) */
+.card-body {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.card-body h6 {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.card-body p {
+  margin: 0;
+  color: #555;
+}
+
+/* Header (radio button) */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: none;
+  width: 60px; /* fixed width column for radio */
+}
+
+/* Footer (edit/delete buttons) */
+.card-footer {
+  display: flex;
+  align-items: center;
+  background: transparent !important;
+  border: none !important;
+  padding: 0;
+}
+
+.card-footer button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.card-footer button i {
+  font-size: 15px;
+}
+
+.card-header input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ff9f43; /* orange border */
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: white;
+  outline: none;
+}
+
+/* Checkmark (hidden by default) */
+.card-header input[type="radio"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 14px;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: translate(-50%, -60%) rotate(45deg) scale(0);
+  opacity: 0;
+  transition: all 0.25s ease;
+}
+
+/* Checked state */
+.card-header input[type="radio"]:checked {
+  background-color: #ff775f; /* orange fill */
+  border-color: #ff775f;
+  box-shadow: 0 0 6px rgba(255, 159, 67, 0.5);
+}
+
+/* Reveal checkmark */
+.card-header input[type="radio"]:checked::after {
+  transform: translate(-50%, -60%) rotate(45deg) scale(1);
+  opacity: 1;
+}
+
+/* Hover state */
+.card-header input[type="radio"]:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(255, 159, 67, 0.4);
+}
