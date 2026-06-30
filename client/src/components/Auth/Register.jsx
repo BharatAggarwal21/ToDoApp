@@ -3,25 +3,42 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Authstyles.css";
 import AuthServices from "../../Services/AuthServices";
 import { toast } from "react-hot-toast";
-import { getErrorMessage } from "../../Utils/StringUtils";
+import SpinnerButton from "../Spinner/SpinnerButton";
+import { getErrorMessage, isValidEmail } from "../../Utils/StringUtils";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   //register function
   const registerHandler = async (e) => {
-    try {
-      e.preventDefault();
-      const data = { email, password, username };
-      const res = await AuthServices.registerUser(data);
-      toast.success(res.data.message);
-      navigate("/login");
-    } catch (err) {
-      toast.error(getErrorMessage(err));
-    }
-  };
+  e.preventDefault();
+  if (!isValidEmail(email)) {
+    return toast.error("Please enter a valid email");
+  }
+
+  try {
+    setLoading(true);
+
+    const data = {
+      email,
+      password,
+      username,
+    };
+
+    const res = await AuthServices.registerUser(data);
+
+    toast.success(res.data.message);
+    navigate("/login");
+  } catch (err) {
+    toast.error(getErrorMessage(err));
+  } finally {
+    setLoading(false);
+  }
+};
+
   return (
     <div className="form-container">
       <div className="form">
@@ -60,9 +77,23 @@ const Register = () => {
             Already a user? please
             <Link to="/login"> Login</Link>
           </p>
-          <button type="submit" className="login-btn" onClick={registerHandler}>
-            REGISTER
-          </button>
+          <button
+  type="submit"
+  className="login-btn"
+  onClick={registerHandler}
+  disabled={loading}
+>
+  {loading ? (
+    <>
+      <SpinnerButton />
+      <span style={{ marginLeft: "10px" }}>
+        Registering...
+      </span>
+    </>
+  ) : (
+    "REGISTER"
+  )}
+</button>
         </div>
       </div>
     </div>

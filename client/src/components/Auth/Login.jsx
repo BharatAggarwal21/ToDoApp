@@ -1,28 +1,39 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Authstyles.css";
+import SpinnerButton from "../Spinner/SpinnerButton";
 import AuthServices from "../../Services/AuthServices";
 import toast from "react-hot-toast";
-import { getErrorMessage } from "../../Utils/StringUtils";
+import { getErrorMessage, isValidEmail } from "../../Utils/StringUtils";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   //login function
-  const loginHandler = async (e) => {
-    try {
-      e.preventDefault();
-      const data = { email, password };
-      const res = await AuthServices.loginUser(data);
-      toast.success(res.data.message);
-      navigate("/home");
-      localStorage.setItem("todoapp", JSON.stringify(res.data));
-    } catch (err) {
-      toast.error(getErrorMessage(err));
-    }
-  };
+ const loginHandler = async (e) => {
+  e.preventDefault();
+  if (!isValidEmail(email)) {
+    return toast.error("Please enter a valid email");
+  }
+
+  try {
+    setLoading(true);
+
+    const data = { email, password };
+    const res = await AuthServices.loginUser(data);
+
+    toast.success(res.data.message);
+    localStorage.setItem("todoapp", JSON.stringify(res.data));
+    navigate("/home");
+  } catch (err) {
+    toast.error(getErrorMessage(err));
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="form-container">
@@ -53,9 +64,23 @@ const Login = () => {
             Not a user? please
             <Link to="/register"> Register</Link>
           </p>
-          <button type="submit" className="login-btn" onClick={loginHandler}>
-            LOGIN
-          </button>
+          <button
+  type="submit"
+  className="login-btn"
+  onClick={loginHandler}
+  disabled={loading}
+>
+  {loading ? (
+    <>
+      <SpinnerButton />
+      <span style={{ marginLeft: "10px" }}>
+        Logging In...
+      </span>
+    </>
+  ) : (
+    "LOGIN"
+  )}
+</button>
         </div>
       </div>
     </div>
