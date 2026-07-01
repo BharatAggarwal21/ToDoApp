@@ -22,13 +22,8 @@ const Landing = () => {
           Login
         </Link>
       </div>
-      <div className="">
-        <img
-          src={`${process.env.PUBLIC_URL}/landing.jpg`}
-          alt="landing"
-          width={"100%"}
-          height={515}
-        />
+      <div className="hero-image">
+        <img src={`${process.env.PUBLIC_URL}/landing.jpg`} alt="landing" />
       </div>
     </div>
   );

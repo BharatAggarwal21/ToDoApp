@@ -52,11 +52,32 @@ const HomePage = () => {
     getUserTask();
   }, [getUserTask]);
 
+  const totalCount = allTask.length;
+  const completedCount = allTask.filter((task) => task?.isCompleted).length;
+
   return (
     <>
       <Navbar />
       <div className="container">
         <div className="tasks-container">
+          <div className="tasks-header">
+            <h2 className="todo-title">My Tasks</h2>
+            {totalCount > 0 && (
+              <>
+                <p className="todo-subtitle">
+                  {completedCount} of {totalCount} completed
+                </p>
+                <div className="progress-track">
+                  <div
+                    className="progress-fill"
+                    style={{
+                      width: `${(completedCount / totalCount) * 100}%`,
+                    }}
+                  />
+                </div>
+              </>
+            )}
+          </div>
           <div className="add-task">
             <input
               type="search"
@@ -81,7 +102,7 @@ const HomePage = () => {
             <div className="no-data-container">
               <img
                 alt="no task"
-                src={`${process.env.PUBLIC_URL}/nodata.jpg`}
+                src={`${process.env.PUBLIC_URL}/nodata.png`}
                 className="no-data-img"
               />
               <p className="no-task">No Tasks Found</p>

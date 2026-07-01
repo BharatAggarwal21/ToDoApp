@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [username, setUsername] = useState("");
@@ -29,7 +30,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg app-navbar">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -44,8 +45,8 @@ const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <h4 className="navbar-brand">
-              <i className="fa-solid fa-user-tie" /> &nbsp;
-              <i>Welcome</i> {username}!
+              <i className="fa-solid fa-user-tie avatar-icon" />
+              <span className="welcome-text">Welcome</span> {username}!
             </h4>
             <div className="navbar-nav ms-auto mb-2 mb-lg-0">
               <button

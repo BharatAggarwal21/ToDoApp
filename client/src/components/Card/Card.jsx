@@ -42,7 +42,10 @@ const Card = ({ task, getUserTask }) => {
 
   return (
     <>
-      <div className="card border-primary mb-3 mt-3" key={task?._id}>
+      <div
+        className={`card mb-3 mt-3 ${task?.isCompleted ? "task-completed" : ""}`}
+        key={task?._id}
+      >
         <div className="card-header">
           <input
             type="radio"
@@ -54,7 +57,7 @@ const Card = ({ task, getUserTask }) => {
           <h6 className={task?.isCompleted ? "completed" : ""}>
             {task?.taskName}
           </h6>
-          <h6>{task?.createdAt.substring(0, 10)}</h6>
+          <h6 className="task-date">{task?.createdAt.substring(0, 10)}</h6>
         </div>
         <div className="card-footer bg-transparent border-primary">
           <button
